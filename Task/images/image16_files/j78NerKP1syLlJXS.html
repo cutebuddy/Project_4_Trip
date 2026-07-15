@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- saved from url=(0119)https://static.sojern.com/cip/p/j78NerKP1syLlJXS.html?l=en&cur=INR&ccid=INKan20260705162718342ufbd&p=HomePage&pname=%2F -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">  
+    <title>Rome2Rio - j78NerKP1syLlJXS</title>
+  <script type="text/javascript" async="" src="./hp"></script></head>
+  <body>
+    <script>
+      var sjrn     = {};
+      (function () {
+        
+        var sjrnStr  = "";
+    
+        var sjrnStr  = window.location.search.slice(1);
+        var hParams = sjrnStr.split(/\&/);
+
+        // get params into sjrn dict
+        sjrn.cid = "";
+        partner_pt = 'htr';
+        vertical = 'f'; 
+        
+        // decide PT
+        var p = sjrnStr.split("p=")[1].split("&")[0];
+        switch(p){
+          case "HomePage":
+            partner_pt = "hp";
+            vertical = 'h';
+            break;
+
+          case "TripLanding":
+            partner_pt = "vs";
+            vertical = 'v';
+            break;
+          case "DestinationLanding":
+            partner_pt = "hs";
+            vertical = 'h';
+            break;
+          case "BusLanding":
+            partner_pt = "rs";
+            vertical = 'r';
+            break;
+          case "TrainLanding":
+            partner_pt = "ts";
+            vertical = 't';
+            break;
+          case "FerryLanding":
+            partner_pt = "cs";
+            vertical = 'c';
+            break;
+          case "AirportLanding":
+            partner_pt = "fs";
+            vertical = 'f';
+            break;
+          case "HotelLanding":
+            partner_pt = "hs";
+            vertical = 'h';
+            break;
+            
+          // search" denotes when the user has interacted with an element on our landing pages
+          case "TripSearch":
+            partner_pt = "vpr";
+            vertical = 'v';
+            break;
+          case "FlightSearch":
+            partner_pt = "fpr";
+            vertical = 'f';
+            break;
+          case "BusSearch":
+            partner_pt = "rpr";
+            vertical = 'r';
+            break;
+          case "TrainSearch":
+            partner_pt = "tpr";
+            vertical = 't';
+            break;
+          case "FerrySearch":
+            partner_pt = "cpr";
+            vertical = 'c';
+            break;
+          case "TicketSearch":
+            partner_pt = "vpr";
+            vertical = 'v';
+            break;
+
+          default:
+            break;
+        }
+        for (var tag in hParams) {
+          separator = "|";
+          if(tag == 0) { separator = ""; }
+          sjrn.cid = sjrn.cid + separator + hParams[tag];
+          b = hParams[tag].split("=")[1];
+          b = b.replace(/\%0A/g,"");
+          a = hParams[tag].split("=")[0];
+
+          if (a == 'p') a = 'pt';
+          
+          // parameter re-formatting
+          if (a == 's1' || a == 's2' ||a == 'a1' ||a == 'a2' ||a == 'c1' ||a == 'c2' ||a == 'n1' ||a == 'n2' ||a == 'd1' ||a == 'd2'){
+            if(a != 'd1' && a != 'd2'){
+              b_split = b.split("+");
+              if(b_split.length > 1){
+                b = b_split.join(" ");
+              }
+              if (vertical == 'h' && a.endsWith('2')) {
+                a = a.slice(0,1) + '1';
+              }
+            }
+            a = vertical + a;
+          }
+          if (a == 'cur') {
+            a = vertical + 'cu';
+          }
+
+          sjrn[a] = decodeURIComponent(b);
+        }
+        sjrn.pc = "version 10";
+        // fire pixel (container and partner)
+        var paramsArr = [];
+        sjrn.et = {}[sjrn.pt] || "";
+        for(key in sjrn) { paramsArr.push(key + "=" + encodeURIComponent(sjrn[key])) };
+        var par_pl = document.createElement("script");
+        par_pl.type = "text/javascript";
+        par_pl.async = true;
+        par_pl.src = "https://pixel.sojern.com/partner/j78NerKP1syLlJXS/"+partner_pt+"?" + paramsArr.join("&");
+        (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(par_pl);
+
+      })();
+    </script></body></html>
